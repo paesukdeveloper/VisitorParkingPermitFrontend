@@ -18,7 +18,7 @@ export class VisitorParkingService {
     return this.httpclient
       .post<any>(
         `${environment.apiUrl}` +
-        apiUrlSetting.ApiMethods.Visitor.saveVisitorVrm, requestBody, {
+        apiUrlSetting.ApiMethods.Visitor.transactionInitVisitorVoucher, requestBody, {
         params: {
           CouncilId: CouncilId
         }
