@@ -12,6 +12,7 @@ export class ThankYouComponent {
     
 
   registerAnotherVehicle(){
+  localStorage.removeItem("VisitingPermitDetails");
   this.route.navigate(['dashboard'])
   }
 }

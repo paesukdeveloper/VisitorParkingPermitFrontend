@@ -48,7 +48,7 @@ export class QrDetailsComponent {
         if (storedData) {
           data = JSON.parse(storedData);
         }
-  }
+      }
       this.parkingDuration = data.parkingDuration ;
       this.vrm = data.vrm;
       this.locationId = data.locationId;

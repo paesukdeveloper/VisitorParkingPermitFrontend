@@ -29,8 +29,8 @@ export class DashboardComponent implements OnInit {
     this.VisitorParkingForm = this.formBuilder.group({
       vrm: ['', [Validators.required]]
     });
-     const loginData =this.loginDataService.getLoginData()
-    console.log(loginData)
+    const loginData =this.loginDataService.getLoginData()
+    
     this.locationId = loginData.locationId
     this.locationAddress = loginData.locationAddress
     this.parkingDuration = loginData.parkingDuration
@@ -49,13 +49,17 @@ export class DashboardComponent implements OnInit {
       return; 
     }
     else{
-    this.dataService.setData({
-      vrm :  this.VisitorParkingForm.value.vrm,
-      locationId: this.locationId,
-      locationAddress: this.locationAddress,
-      dateAndTime: this.dateAndTime,
-      parkingDuration: this.parkingDuration
-        });
+      const data = 
+      { 
+        vrm :  this.VisitorParkingForm.value.vrm,
+        locationId: this.locationId,
+        locationAddress: this.locationAddress,
+        dateAndTime: this.dateAndTime,
+        parkingDuration: this.parkingDuration
+      }
+      
+     this.dataService.setData(data);
+     localStorage.setItem('VisitingPermitDetails', JSON.stringify(data));
     this.route.navigate(['Parking-details']);
     }
       

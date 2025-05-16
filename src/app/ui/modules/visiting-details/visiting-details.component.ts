@@ -32,7 +32,13 @@ export class VisitingDetailsComponent {
       private visitorService: VisitorParkingService,  private webPageService: WebpageService,private securityService: EncryptionService,private sanitizer: DomSanitizer){}
         
     ngOnInit() {
-      const data = this.dataService.getData();
+      let data = this.dataService.getData();
+      if (!data || Object.keys(data).length === 0) {
+        const storedData = localStorage.getItem('VisitingPermitDetails');
+        if (storedData) {
+          data = JSON.parse(storedData);
+        }
+      }
       this.parkingDuration = data.parkingDuration || [];
       this.vrm = data.vrm;
       this.locationId = data.locationId;
