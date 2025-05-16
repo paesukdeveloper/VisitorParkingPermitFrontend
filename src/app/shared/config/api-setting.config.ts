@@ -166,7 +166,8 @@ export const apiUrlSetting = {
           },
           Visitor: {
             saveVisitorVrm : "Visitor/SaveVrmRegistration",
-            GetVisitorVoucherByLocationId : "Visitor/GetVisitorVoucherByLocationId"
+            GetVisitorVoucherByLocationId : "Visitor/GetVisitorVoucherByLocationId",
+            transactionInitVisitorVoucher : "Visitor/TransactionInitVisitorVoucher"
           }
          
     }

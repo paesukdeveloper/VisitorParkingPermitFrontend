@@ -34,6 +34,13 @@ const routes: Routes = [
           (m) => m.QrDetailsModule
         ),
     },
+   {
+      path: 'qr-thankyou',
+      loadChildren: () =>
+        import('../../src/app/ui/modules/qr-thankyou/qr-thankyou.module').then(
+          (m) => m.QrThankyouModule
+        ),
+    },
   
 ];
 

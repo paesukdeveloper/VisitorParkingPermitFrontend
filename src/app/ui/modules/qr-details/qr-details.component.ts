@@ -8,6 +8,7 @@ import { WebpageService } from '../../services/web-page/webpage.service';
 import { EncryptionService } from '../../../helpers/security/encryption.service';
 import { webpagesContent } from '../../../shared/enums/webpages-content.enum';
 import configuration from '../../../../assets/config.json'
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-qr-details',
   templateUrl: './qr-details.component.html',
@@ -27,14 +28,28 @@ export class QrDetailsComponent {
     termsAndCondition: SafeHtml = ""
     totalAmount: string = ""
     userEmail: string = '';
+    transactionIdForVisitorPermit: any
+
+
+
+
+
+
     constructor(private qrDataTransfer: QrDataTransferService, private route: Router,   private toaster: ToastrService, 
       private visitorService: VisitorParkingService,  private webPageService: WebpageService,private securityService: EncryptionService,
       private sanitizer: DomSanitizer){}
 
-       ngOnInit() {
-        debugger
-      const data = this.qrDataTransfer.getQRData();
-      this.parkingDuration = data.parkingDuration || [];
+    ngOnInit() {
+      debugger
+      let data = this.qrDataTransfer.getQRData();
+      // If no data from the service, try localStorage
+      if (!data || Object.keys(data).length === 0) {
+        const storedData = localStorage.getItem('qrVisitingPermit');
+        if (storedData) {
+          data = JSON.parse(storedData);
+        }
+  }
+      this.parkingDuration = data.parkingDuration ;
       this.vrm = data.vrm;
       this.locationId = data.locationId;
       this.locationAddress = data.locationAddress;
@@ -62,10 +77,63 @@ export class QrDetailsComponent {
 
 
     saveVisitorPermit(){
-
+      let transactionData = {
+      currency: "GBP",
+      refno: "",
+      amount: this.totalAmount,
+      autoSettle: true,
+      paymentMethods: [
+        ""
+      ],
+      redirect: {
+        successUrl: "",
+        cancelUrl: "",
+        errorUrl: ""
+        }
     }
 
-       getWebPagesTermAndConditionById(){
+    let option = {
+      returnMobileToken: false
+    }
+
+    const visitorRegistrationModel = {
+      vrm: this.vrm,
+      locationId: this.locationId,
+      address: this.locationAddress,
+      startTime: this.dateAndTime,
+      endTime: this.endTime,
+      emailId: this.userEmail
+    }
+
+    const requestBody = {
+      visitorRegistrationModel : visitorRegistrationModel,
+      transactionData : transactionData,
+      option : option
+    }
+
+    this.visitorService.SaveVisitorParkingPermit(encodeURIComponent(this.securityService.OpenSSLEncrypt(configuration.councilName)
+  ), requestBody).subscribe((response)=> {
+    if(response.Status == 200){
+        this.transactionIdForVisitorPermit = response.Data.transactionId;
+
+        window.location.href = `${environment.startTransactionUrl + response.Data.transactionId}`;
+    }
+    else if (response.Status === 400) {
+      this.toaster.error(response.Message);
+    }
+    else {
+      this.toaster.error(response.Message);
+    }
+  })
+
+
+
+
+
+
+  }
+
+  getWebPagesTermAndConditionById(){
     this.webPageService.GetWebPageTermsAndConditionsById(
       webpagesContent.visitingVoucher, 
       encodeURIComponent(this.securityService.OpenSSLEncrypt(configuration.councilName)))

@@ -52,16 +52,19 @@ export class QrLandingPageComponent {
     this.showVrmError = false;
     
     if(this.totalAmount !=""){
-      // Simulate plate verification
-      this.qrDataTransfer.setQRData({
-        vrm : this.vrm,
-        locationId : this.locationId,
-        locationAddress : this.locationAddress,
-        startDate : this.dateAndTime.toISOString(),
-        endTime : this.endTime,
-        totalAmount : this.totalAmount
 
-      })
+      const qrData = {
+      vrm: this.vrm,
+      locationId: this.locationId,
+      locationAddress: this.locationAddress,
+      startDate: this.dateAndTime.toISOString(),
+      endTime: this.endTime,
+      totalAmount: this.totalAmount
+    };
+      // Simulate plate verification
+      this.qrDataTransfer.setQRData(qrData);
+      localStorage.setItem('qrVisitingPermit', JSON.stringify(qrData));
+      
       this.router.navigate(['/qr-details'])
     }
     else{

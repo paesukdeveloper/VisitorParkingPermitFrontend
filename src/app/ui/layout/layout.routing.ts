@@ -41,13 +41,7 @@ const routes: Routes = [
         ),
         canActivate: [AuthGuard]
     },
- {
-      path: 'qr-details',
-      loadChildren: () =>
-        import('../modules/qr-details/qr-details.module').then(
-          (m) => m.QrDetailsModule
-        ),
-    },
+ 
   ]
 }
 

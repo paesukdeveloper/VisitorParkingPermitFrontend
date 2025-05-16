@@ -69,6 +69,35 @@ export class VisitorParkingService {
   }
 
 
+   qrPayment(CouncilId: any, requestBody: any): Observable<ApiResponse> {
+    this.loader.show();
+    return this.httpclient
+      .post<any>(
+        `${environment.apiUrl}` +
+        apiUrlSetting.ApiMethods.Visitor.transactionInitVisitorVoucher, requestBody, {
+        params: {
+          CouncilId: CouncilId
+        }
+      }
+      )
+      .pipe(
+        retry(0),
+        catchError(this.handleError),
+        map(
+          (response) =>
+          (this.loader.hide(), {
+            Data: response.data,
+            Message: response.message,
+            Status: response.status,
+            AdditionalData:response.additionalData,
+            TotalCount: 0,
+          } as ApiResponse)
+        )
+      );
+  }
+
+
+
    private handleError(error: any) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

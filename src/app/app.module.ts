@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ThankYouComponent } from './ui/modules/thank-you/thank-you.component';
 import { QrLandingPageComponent } from './ui/modules/qr-landing-page/qr-landing-page.component';
 import { QrDetailsComponent } from './ui/modules/qr-details/qr-details.component';
+import { QrThankyouComponent } from './ui/modules/qr-thankyou/qr-thankyou.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { QrDetailsComponent } from './ui/modules/qr-details/qr-details.component
     ThankYouComponent,
     QrLandingPageComponent,
     QrDetailsComponent,
+
     
       ],
   imports: [
