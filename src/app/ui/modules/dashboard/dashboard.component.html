@@ -1,0 +1,40 @@
+<form [formGroup]="VisitorParkingForm">
+<div class="dashboard-container">
+  <!-- Top Header -->
+  <div class="dashboard-header">
+    <h2>Vehicle Registration</h2>
+  </div>
+
+  <!-- Full-width Registration Panel -->
+  <div class="registration-section">
+    <div class="vrm-highlight">
+      <label for="vrm">VRM Number</label>
+      <input id="vrm" formControlName="vrm" type="text" placeholder="Enter your vehicle registration" />
+       <div *ngIf="VisitorParkingForm.get('vrm')?.invalid && (VisitorParkingForm.get('vrm')?.dirty || VisitorParkingForm.get('vrm')?.touched)"
+          class="errormsg">
+        <span>{{'VRM_is_required' | translate}} </span>
+        </div>
+    </div>
+
+    <div class="details-inline">
+      <div class="detail-block card-style">
+        <label><i class="fa-solid fa-location-dot icon-primary"></i> Location ID</label>
+        <p>{{locationId}}</p>
+      </div>
+      <div class="detail-block card-style">
+        <label><i class="fa-solid fa-map-pin icon-primary"></i> Location Address</label>
+        <p>{{locationAddress}}</p>
+      </div>
+      <div class="detail-block card-style">
+        <label>Date & Time</label>
+        <p>{{ dateAndTime | date: 'HH:mm a, EEE MMM dd' }}</p>
+      </div>
+    </div>
+
+    <div class="btn-container">
+      <button class="btn-register" (click)="agreeAndProceed()">Register Vehicle</button>
+    </div>
+  </div>
+</div>
+
+</form>

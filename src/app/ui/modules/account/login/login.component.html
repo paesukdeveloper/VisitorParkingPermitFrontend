@@ -1,0 +1,51 @@
+<div class="bg-img">
+  <div class="login-container">
+    <div class="login-logo">
+      <h2>Operator Sign In</h2>
+    <br>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="loginClick()">
+
+      <div>
+        <label>Username<span class="text-danger"></span></label>
+        <input type="text" formControlName="userName" name="username" placeholder="Enter your username">
+        <div
+          *ngIf="loginForm.get('userName')?.invalid && (loginForm.get('userName')?.dirty || loginForm.get('userName')?.touched)"
+          class="errormsg">
+          <span>{{'username_required' |translate}} </span>
+        </div>
+      </div>
+      <div>
+        <label>Password<span class="text-danger"></span></label>
+
+        <div class="position-relative reset-pass-eye">
+          <input type="password" name="password" formControlName="password" [attr.type]="passwordFieldType"
+            placeholder="Enter your password">
+          <span class="eyeClass" [attr.data-tooltip]="!passwordVisible ? 'Show Password' :  'Hide Password'">
+            <i [ngClass]="passwordVisible ? 'fa fa-eye-slash' : 'fa fa-eye'" id="togglePassword" aria-hidden="true"
+              style="cursor: pointer" (click)="togglePasswordVisibility()"></i>
+          </span>
+          <div
+            *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+            class="errormsg">
+            <span>{{'password_required' |translate}}</span>
+          </div>
+        </div>
+  
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="remember-me" name="remember-me"
+          data-parsley-multiple="remember-me" formControlName="rememberMe" [checked]="isRemember" (change)="rememberMe($event)">
+        <label class="custom-control-label" for="remember-me">Remember me?</label>
+      </div>
+
+      <div *ngIf="error" class="errormsg">
+        <span>{{ error }}</span>
+      </div>
+      <button class="btn btn-block login-button" type="submit" >LOGIN</button>
+    
+    </form>
+  
+  </div>
+
+</div>

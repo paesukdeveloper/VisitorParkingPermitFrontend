@@ -1,0 +1,74 @@
+<div class="parking-details-container card-style p-4">
+  
+  
+    <h4 class="text-center mb-2">Parking At : {{locationAddress}}</h4>
+  
+   
+    <div class="overview-card card-style p-3 mb-4">
+      <h5 class="mb-3">Overview</h5>
+  
+      <div class="row mb-3">
+        <div class="col">
+          <strong>Starts</strong><br />
+          <span class="text-muted">{{ dateAndTime | date: 'HH:mm a,  MMM dd' }}</span>
+        </div>
+        <div class="col text-end">
+          <strong>Ends</strong><br />
+          <span class="text-muted">{{endTime | date: 'HH:mm a,  MMM dd' }}</span>
+        </div>
+      </div>
+  
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <strong>Vehicle registration:</strong><br />
+          <span class="text-muted">{{vrm}}</span>
+        </div>
+         <div class="col text-end">
+          <strong>Location ID</strong><br />
+          <span class="text-muted">{{locationId}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+    <label for="email" class="form-label"><strong>Email Address</strong></label>
+    <input
+      type="email"
+      id="email"
+      class="form-control"
+      [(ngModel)]="userEmail"
+      name="email"
+      placeholder="Enter your email"
+    />
+  </div>
+
+  
+    <button class="add-button w-100 btn-confirm-booking" (click)="agreeAndProceed()">Pay € {{totalAmount}}</button>
+  
+    <p >
+      By paying the amount, you are agreeing to the <a class="text-link"  (click)="RegisterVehicle()">Terms & Conditions</a>.
+    </p>
+  </div>
+  
+
+<div class="modal cust-modal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayStyle}">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="d-flex justify-content-between w-100 align-items-center">
+          <h5 class="modal-title" id="exampleModalLabel">Terms And Conditions</h5>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closePrivacyAgreementPopUp()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body terms-and-condition-body" [innerHTML]="termsAndCondition"></div>
+      <div class="modal-footer justify-content-start">
+        <div class="addcancel-buttons">
+          <a class="add-button" (click)="closePrivacyAgreementPopUp()">Close</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  

@@ -1,0 +1,15 @@
+<div class="col-md-12 mymodelp">
+  <div class="modal-header">
+    <b>{{data.headerTitle}}</b>
+    <button type="button"  mat-dialog-close class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{data.title}}
+  </div>
+  <div class="modal-footer">
+    <a class="close" data-dismiss="modal" (click)="onConfirm()" aria-label="Close" class="add-button">Yes</a>
+    <a class="close" data-dismiss="modal" mat-dialog-close aria-label="Close" class="secondary-button">No</a>
+  </div>
+</div>

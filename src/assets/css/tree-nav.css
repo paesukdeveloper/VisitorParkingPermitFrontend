@@ -1,0 +1,66 @@
+ /*!  Plugin: treeNav (Tree View from HTML Nested List)
+ *   Author: Asif Mughal
+ *   URL: www.codehim.com
+ *   License: MIT License
+ *   Copyright (c) 2019 - Asif Mughal
+ */
+/* File: tree-nav.css */
+ *{ margin: 0; padding: 0;}
+/* Color Scheme */
+.tree-nav.default{
+  --color: rgba(255, 255, 255, 0.75);
+  --background: rgb(22, 12, 12);
+  --folder-color: rgb(230, 195, 0);
+}
+
+.tree-nav a {
+   color: var(--color);
+   text-decoration: none;
+}
+/* Custom Scrollbar For TreeNav */
+.tree-nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tree-nav::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+.tree-nav::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+.tree-nav::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+.tree-nav li ul li a:before {
+    content: "\B7 \B7 \B7";
+    margin-left: -5px;
+    font-size: 10px;
+    vertical-align: 20%;
+}
+.tree-nav li ul li {
+border-left: 1px dotted #274964;
+margin-left: 32px;
+
+}
+.tree-nav li ul{
+display: none;
+
+}
+/* Folder Icon Design */
+.folder{
+  cursor: pointer;
+
+}
+.folder:before{
+   font-family: FontAwesome;
+   content: "\f07b";
+   color: var(--folder-color);
+   margin-right: 5px;
+   display: inline-block;
+   padding: 3px;
+}
+.folder.open:before{
+   content: "\f07c";
+}

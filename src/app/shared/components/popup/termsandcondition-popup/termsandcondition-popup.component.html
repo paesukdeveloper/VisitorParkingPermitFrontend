@@ -1,0 +1,26 @@
+<!-- Accepet terms & conditions modal start -->
+<div class="w-100">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Terms & Conditions</h5>
+        <button type="button" class="btn-close" (click)="onCancel()" data-dismiss="modal" mat-dialog-close  aria-label=" Close"></button>
+      </div>
+      
+          <div class="modal-body max-h-500 terms-and-condition-body" [innerHTML]="termsAndCondition"></div>
+       
+      <div class="modal-footer d-flex justify-content-between">
+        <div class="custom-control custom-checkbox having-checkbox-extra">
+          <input type="checkbox" class="custom-control-input" id="accept-terme-conditions" 
+            name="accept-terme-conditions" data-parsley-multiple="accept-terme-conditions" [(ngModel)]="isCheckedTermsandCondition">
+          <label class="custom-control-label" for="accept-terme-conditions">Accept Terms & Conditions</label>
+        </div>
+        <div class="addcancel-buttons">
+          <button (click)="onConfirm()" [disabled]="!isCheckedTermsandCondition" class="add-button">Save</button>
+          <a (click)="onCancel()" class="close" data-dismiss="modal" mat-dialog-close aria-label="Close" class="secondary-button">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Accepet terms & conditions modal end -->

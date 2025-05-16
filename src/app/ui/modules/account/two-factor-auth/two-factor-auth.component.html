@@ -1,0 +1,139 @@
+<section class="home-page-main">
+  <div class="row m-0 bg-img gy-4 gy-xl-0">
+    <div class="col-xl-6 main-page-content p-0">
+      <div class="main-page-details-content">
+      <div class="all-home-left login-container">
+        <div class="navbar-brand-center text-center">
+          <a><img src="../../../../assets/images/PermitPro-Logo.svg" class="img-responsive main-page-logo mb-0"
+              alt="logo"></a>
+        </div>
+        <form [formGroup]="twofaForm" (ngSubmit)="onVerifyClick()">
+          <h6 class="forgot-password-title">2 Factor Authentication</h6>
+          <label>Get Code Via</label>
+          <div class="d-flex align-items-center gap-4 get-code-on">
+            <span (click)="onEmailShow()" [ngClass]="{'active': emailshow}" data-tooltip="Get Code Via Email"  *ngIf="is2FAEnabledEmail"
+              data-tooltip-location="right"><i class="fa-solid fa-envelope"></i></span>
+            <span (click)="onPhoneShow()" [ngClass]="{'active': phoneshow}" data-tooltip="Get Code Via SMS" *ngIf="is2FAEnabledSMS"
+              data-tooltip-location="right"><i class="fa-solid fa-comment-sms"></i></span>
+          </div>
+
+          <div *ngIf="phoneshow" class="email-phn-show-field">
+            <label>Phone No.<span class="text-danger">*</span></label>
+            <input type="text" formControlName="phone" name="phone" placeholder="Enter the Phone No. ">
+            <a (click)="ResendCodeToPhoneNumber()">Send Code</a>
+          </div>
+          <div *ngIf="emailshow" class="email-phn-show-field">
+            <label>Email Address<span class="text-danger">*</span></label>
+            <input type="text" formControlName="email" class="disabled"  name="email" placeholder="Enter the Email Address ">
+            <a (click)="ResendCode()">Send Code</a>
+          </div>
+          <div class="some-times-disabled">
+            <label>Code<span class="text-danger">*</span></label>
+            <input type="text" formControlName="otp"  (input)="onNumberInput($event)"
+              name="OneTimePassword" placeholder="Enter the code sent on your email ">
+          </div>
+          <div class="send-code-again">
+            <p>Not recieved your code? </p><a (click)="ResendCode()"  >Resend Code</a>
+          </div>
+          <div *ngIf="error" class="errormsg">
+            <span>{{ error }}</span>
+          </div>
+          <ul class="forgot-btn">
+            <li>
+              <button class="add-button pw-button mw-100" type="submit">Verify</button>
+            </li>
+            <li>
+              <button class="add-button pw-button mw-100" type="button" routerLink="/login">Back</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+      <div class="powered-by">
+        <span>Powered By:</span>
+        <img src="../../../../assets/images/TES_NEW_LOGO.png" class="fluid" alt="tes-logo">
+      </div>
+      </div>
+    </div>
+    <div class="col-xl-6 home-page-right p-0">
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="process_box text-center">
+              <div class="slide-image-wrapper">
+
+                <div class="box_icon cl1"><img
+                    src="http://councilfaultreport.co.uk/councilpermit/frontend/web/ip/images/icons/icon1.png"
+                    width="100" height="100"></div>
+              </div>
+              <div class="process_box_content_main">
+                <h4>Registration</h4>
+                <p>Complete the visitor book registration form online and wait until your application has
+                  been
+                  authorized.</p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="process_box text-center">
+              <div class="slide-image-wrapper">
+
+                <div class="box_icon cl2"><img
+                    src="http://councilfaultreport.co.uk/councilpermit/frontend/web/ip/images/icons/icon2.png"
+                    width="100" height="100"></div>
+              </div>
+              <div class="process_box_content_main">
+                <h4>Authorization</h4>
+                <p>Back-office staff will review the application and authorize or reject the application.
+                </p>
+              </div>
+
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="process_box text-center">
+              <div class="slide-image-wrapper">
+
+                <div class="box_icon cl3"><img
+                    src="http://councilfaultreport.co.uk/councilpermit/frontend/web/ip/images/icons/icon3.png"
+                    width="100" height="100"></div>
+              </div>
+              <div class="process_box_content_main">
+
+                <h4>Purchase the Voucher Book</h4>
+                <p>Once authorized, you can now purchase your vouchers online, on the web, phone, or tablet.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="process_box text-center">
+              <div class="slide-image-wrapper">
+
+                <div class="box_icon cl4"><img
+                    src="http://councilfaultreport.co.uk/councilpermit/frontend/web/ip/images/icons/icon4.png"
+                    width="100" height="100"></div>
+              </div>
+              <div class="process_box_content_main">
+
+                <h4>Redeem Voucher</h4>
+                <p>Once purchased, you can now redeem your vouchers online, on the web, phone, or tablet.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

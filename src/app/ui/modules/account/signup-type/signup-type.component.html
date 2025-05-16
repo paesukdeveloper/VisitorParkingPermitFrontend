@@ -1,0 +1,287 @@
+<section class="home-page-main">
+    <div class="row m-0 bg-img gy-4 gy-xl-0">
+        <div class="col-xl-6  position-relative p-0">
+            <div class="main-page-details-content">
+                <div class="all-home-left signup-home-left">
+                    <div class="all-reg-type">
+                        <div class="single-reg-type">
+                            <div class="single-reg-type-inner">
+                                <div class="single-reg-type-icon">
+                                    <i class="fa-solid fa-ticket"></i>
+                                </div>
+                                <div class="single-reg-type-content">
+                                    <h4>Voucher<br /> Registration</h4>
+                                    <p>Once registered, your voucher
+                                        will be ready for use according to the
+                                        terms and conditions specified.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="overlay-only">
+
+                            </div>
+                            <div class="single-reg-type-inner-over-lay">
+                                <ul>
+                                    <li *ngFor="let item of voucherTypeData"><a
+                                            (click)="onShow(1,item.key,item.value)">{{item.value}}</a>
+                                        <span><i class="fa-solid fa-arrow-right-long"></i>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="single-reg-type">
+                            <div class="single-reg-type-inner">
+                                <div class="single-reg-type-icon">
+                                    <i class="fa-solid fa-address-card"></i>
+                                </div>
+                                <div class="single-reg-type-content">
+                                    <h4>Permit <br>Registration</h4>
+                                    <p>Permit registration ensures that all necessary
+                                        safety and legal standards are met.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="overlay-only">
+
+                            </div>
+                            <div class="single-reg-type-inner-over-lay">
+                                <ul>
+                                    <li *ngFor="let item of permitTypeData"><a
+                                            (click)="onShow(2,item.key,item.value)">{{item.value}}</a>
+                                        <span><i class="fa-solid fa-arrow-right-long"></i>
+                                        </span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="single-reg-type cursor-pointer" *ngIf="isCashlessAllowed">
+                            <div class="single-reg-type-icon">
+                              <i class="fa-solid fa-rug"></i>
+                            </div>
+                            <div class="single-reg-type-content" (click)="onShowCashless()">
+                              <h4>Cashless<br /> Voucher</h4>
+                              <p>A cashless voucher is a type of payment that allows the user to redeem a specified
+                                value without using physical cash.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="addcancel-buttons text-center mw-100">
+                        <a class="add-button rounded-5" routerLink="/">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 home-page-right p-0 position-relative">
+            <div *ngIf="!Formshow" class="process-box-content">
+                <div class="process-box-block">
+                    <div class="box_icon cl1">
+                        <img src="http://councilfaultreport.co.uk/councilpermit/frontend/web/ip/images/icons/icon1.png"
+                            width="50" height="50">
+                    </div>
+                    <div class="process_box_content_main">
+                        <h4>Registration</h4>
+                        <div class="sub-text">Complete the visitor book registration form online and wait until your
+                            application has
+                            been authorised.
+                        </div>
+                    </div>
+                </div>
+                <div class="process-box-block">
+                    <div class="box_icon cl1">
+                        <img src="http://councilfaultreport.co.uk/councilpermit/frontend/web/ip/images/icons/icon2.png"
+                            width="50" height="50">
+                    </div>
+                    <div class="process_box_content_main">
+                        <h4>Authorization</h4>
+                        <div class="sub-text">
+                            Back office staff will reveiw the application and authorised or reject the application.
+                        </div>
+                    </div>
+                </div>
+                <div class="process-box-block">
+                    <div class="box_icon cl1">
+                        <img src="http://councilfaultreport.co.uk/councilpermit/frontend/web/ip/images/icons/icon3.png"
+                            width="50" height="50">
+                    </div>
+                    <div class="process_box_content_main">
+                        <h4>Purchase Voucher Book</h4>
+                        <div class="sub-text">
+                            Once authorised you can now purchase your vouchers online, on web, phone or tablet.
+                        </div>
+                    </div>
+                </div>
+                <div class="process-box-block">
+                    <div class="box_icon cl1">
+                        <img src="http://councilfaultreport.co.uk/councilpermit/frontend/web/ip/images/icons/icon4.png"
+                            width="50" height="50">
+                    </div>
+                    <div class="process_box_content_main">
+                        <h4>Redeem Voucher</h4>
+                        <div class="sub-text">
+                            Once purchased you can now reedem your vouchers online, on web, phone or tablet.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="formshow-wrapper mb-4 mb-xl-0" *ngIf="Formshow">
+                <form [formGroup]="userForm" (ngSubmit)="saveUserDetails()">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="form-main-title">
+                                {{registrationName}}
+                            </h3>
+                            <p>Please fill out the following fields to signup</p>
+                        </div>
+                        <div class="col-lg-4 col-xxl-2">
+                            <div class="field-sec">
+                                <label for="inputtext">Title<span class="text-danger">*</span></label>
+                                <select name="dpoint" id="dpoint" formControlName="title">
+                                    <option value="">Title</option>
+                                    <option *ngFor="let item of userPrefixData" value="{{item.key}}">{{item.value}}
+                                    </option>
+                                </select>
+                                <div *ngIf="userForm.get('title')?.invalid && (userForm.get('title')?.dirty || userForm.get('title')?.touched)"
+                                    class="errormsg">
+                                    <span *ngIf="userForm.get('title')?.errors?.['required']">Title is required
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-xxl-5">
+                            <div class="field-sec">
+                                <label for="inputtext">First Name<span class="text-danger">*</span></label>
+                                <input type="text" id="inputtext" class="form-control" placeholder="First Name"
+                                    formControlName="firstName" maxlength="50">
+                                <div *ngIf="userForm.get('firstName')?.invalid && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)"
+                                    class="errormsg">
+                                    <span
+                                        *ngIf="userForm.get('firstName')?.errors?.['required'] || userForm.get('firstName')?.errors?.['whitespace']">
+                                        First Name is required
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xxl-5">
+                            <div class="field-sec">
+                                <label for="inputtext">Last Name<span class="text-danger">*</span></label>
+                                <input type="text" id="inputtext" class="form-control" placeholder="Last Name"
+                                    formControlName="surName"  maxlength="50">
+                                <div *ngIf="userForm.get('surName')?.invalid && (userForm.get('surName')?.dirty || userForm.get('surName')?.touched)"
+                                    class="errormsg">
+                                    <span
+                                        *ngIf="userForm.get('surName')?.errors?.['required'] || userForm.get('surName')?.errors?.['whitespace']">
+                                        Last Name is required
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="field-sec">
+                                <label for="inputtext">Email<span class="text-danger">*</span></label>
+                                <input type="text" id="inputtext" class="form-control" placeholder="Email"
+                                    formControlName="email"  (blur)="SearchUserUsingEmail()"   maxlength="50">
+                                <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
+                                    class="errormsg">
+                                    <span
+                                        *ngIf="userForm.get('email')?.errors?.['required'] || userForm.get('email')?.errors?.['whitespace']">
+                                        Email is required
+                                    </span>
+                                    <span *ngIf="userForm.get('email')?.errors?.email"> {{'invalid_email' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="field-sec">
+                                <label for="inputtext">Contact No.<span class="text-danger">*</span></label>
+                                <input type="text" id="inputtext" class="form-control" placeholder="Contact No."
+                                    formControlName="contactNo"  maxlength="13">
+                                <div *ngIf="userForm.get('contactNo')?.invalid && (userForm.get('contactNo')?.dirty || userForm.get('contactNo')?.touched)"
+                                    class="errormsg">
+                                    <span *ngIf="userForm.get('contactNo')?.errors?.['required']"> Contact No is
+                                        required
+                                    </span>
+                                    <span
+                                        *ngIf="userForm.get('contactNo')?.errors?.['pattern'] && !userForm.get('contactNo')?.errors?.['whitespace']">
+                                        Invaliad Contact No </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="field-sec">
+                                <label>Password<span class="text-danger">*</span></label>
+                                <div class="position-relative reset-pass-eye">
+                                    <input [attr.type]="passwordFieldType" name="password" formControlName="password"
+                                        placeholder="Enter your password" class="form-control"  maxlength="500">
+                                    <span class="eyeClass" data-tooltip-location="left"
+                                        [attr.data-tooltip]="!isNewPasswordShow ? 'Show Password' :  'Hide Password'">
+                                        <i [ngClass]="isNewPasswordShow ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                                            id="togglePassword" aria-hidden="true" style="cursor: pointer"
+                                            (click)="showNewPassword()"></i>
+                                    </span>
+
+                                </div>
+                                <div *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)"
+                                    class="errormsg">
+                                    <span
+                                        *ngIf="userForm.get('password')?.errors?.['required'] || userForm.get('password')?.errors?.['whitespace']">
+                                        Password is required
+                                    </span>
+                                </div>
+                                <div *ngIf="errMsgPassword.length > 0">
+                                    <div class="errormsg" *ngFor="let item of errMsgPassword">
+                                        <span>
+                                            {{item}}
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="field-sec">
+                                <label>Confirm Password<span class="text-danger">*</span></label>
+                                <div class="position-relative reset-pass-eye">
+                                    <input [attr.type]="cfnPasswordFieldType" name="password"
+                                        formControlName="cnfPassword" class="form-control"
+                                        placeholder="Enter your password">
+                                    <span class="eyeClass" data-tooltip-location="left"
+                                        [attr.data-tooltip]="!isCnfPasswordShow ? 'Show Password' :  'Hide Password'">
+                                        <i [ngClass]="isCnfPasswordShow ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                                            id="togglePassword" aria-hidden="true" style="cursor: pointer"
+                                            (click)="showCnfPassword()"></i>
+                                    </span>
+
+                                </div>
+                                <div *ngIf="userForm.get('cnfPassword')?.invalid && (userForm.get('cnfPassword')?.dirty || userForm.get('cnfPassword')?.touched)"
+                                    class="errormsg">
+                                    <span
+                                        *ngIf="userForm.get('cnfPassword')?.errors?.['required'] || userForm.get('cnfPassword')?.errors?.['whitespace']">
+                                        Confirm Password is required
+                                    </span>
+                                </div>
+                                <div *ngIf="userForm.get('cnfPassword')?.errors?.['passwordMismatch']" class="errormsg">
+                                    <span> Password and Confirm Password does not match</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="addcancel-buttons mt-4 mw-100 text-center">
+                                <a class="add-button rounded-5" (click)="saveUserDetails()" [class.disabled]="isUserEmailExists">Submit</a>
+                               
+                                <a class="add-button ms-3 ms-xl-0 mt-xl-0 rounded-5" type="button"
+                                    (click)="onHide()">Back</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
