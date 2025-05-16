@@ -82,18 +82,11 @@ export class QrDetailsComponent {
       refno: "",
       amount: this.totalAmount,
       autoSettle: true,
-      paymentMethods: [
-        ""
-      ],
       redirect: {
         successUrl: "",
         cancelUrl: "",
         errorUrl: ""
         }
-    }
-
-    let option = {
-      returnMobileToken: false
     }
 
     const visitorRegistrationModel = {
@@ -108,7 +101,6 @@ export class QrDetailsComponent {
     const requestBody = {
       visitorRegistrationModel : visitorRegistrationModel,
       transactionData : transactionData,
-      option : option
     }
 
     this.visitorService.SaveVisitorParkingPermit(encodeURIComponent(this.securityService.OpenSSLEncrypt(configuration.councilName)
