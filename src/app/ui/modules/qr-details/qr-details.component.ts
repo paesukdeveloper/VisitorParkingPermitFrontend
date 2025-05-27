@@ -102,8 +102,9 @@ export class QrDetailsComponent {
       visitorRegistrationModel : visitorRegistrationModel,
       transactionData : transactionData,
     }
+    debugger
 
-    this.visitorService.SaveVisitorParkingPermit(encodeURIComponent(this.securityService.OpenSSLEncrypt(configuration.councilName)
+    this.visitorService.qrPayment(encodeURIComponent(this.securityService.OpenSSLEncrypt(configuration.councilName)
   ), requestBody).subscribe((response)=> {
     if(response.Status == 200){
         this.transactionIdForVisitorPermit = response.Data.transactionId;
