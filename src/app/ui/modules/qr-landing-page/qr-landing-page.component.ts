@@ -31,6 +31,9 @@ export class QrLandingPageComponent {
   dateAndTime:Date = new Date();
   totalAmount: string  = ""
   showVrmError = false;
+  parkingSlotsAvailable : number = 0
+
+  arrivalDateTime: string = ''; // Bind to datetime-local input
   constructor(private route: ActivatedRoute, private visitorService: VisitorParkingService, private qrDataTransfer: QrDataTransferService
     ,private toaster: ToastrService,private router: Router,
   ) {}
@@ -41,7 +44,28 @@ export class QrLandingPageComponent {
     this.locationId = code ?? ""
 
     this.GetVisitorVoucherByLocationId()
+
+    const now = new Date();
+    this.arrivalDateTime = this.formatDateForInput(now);
+   this.updateArrivalTime(new Date(this.arrivalDateTime));
   }
+
+
+  formatDateForInput(date: Date): string {
+  const pad = (n: number) => n.toString().padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+}
+
+onArrivalTimeChange() {
+  const selectedDate = new Date(this.arrivalDateTime);
+  this.updateArrivalTime(selectedDate);
+  this.endTime = ""
+  this.selectedDuration = null
+}
+
+updateArrivalTime(date: Date) {
+  this.dateAndTime = date;
+}
 
 
   verifyPlate() {
@@ -77,7 +101,7 @@ export class QrLandingPageComponent {
       this.selectedDuration = duration;
       this.endTime = this.calculateEndTime(this.dateAndTime.toString() ,duration.duration)
       this.totalAmount = duration.amount;
-    }
+  }
 
     calculateEndTime(startTime:string , duration:string|""):string {
       
@@ -95,6 +119,7 @@ export class QrLandingPageComponent {
         this.locationId = data.Data.locationId
         this.locationAddress = data.Data.address
         this.maxParkingDuration  = data.Data.maxParkingDuration
+        this.parkingSlotsAvailable = data.Data.totalParkingSlots
         this.formatdMaxParkingDuration()
         this.parkingDuration = data.Data.parkingDurations.map((option: any) => ({
           ...option,

@@ -38,10 +38,27 @@
     </button>
       </div>
     
-    <div class="arrival-exit-time text-center mt-3">
-      <p>Arrival Time: {{ dateAndTime | date: 'HH:mm a,  MMM dd' }}</p>
-      <p>Exit Before: {{endTime | date: 'HH:mm a,  MMM dd'}}</p>
+   <div class="arrival-exit-time text-center mt-3">
+    <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
+       
+       <label for="arrivalTime"><i class="fa-regular fa-clock icon-primary"></i> Select Arrival Time</label>
+        <input
+          id="arrivalTime"
+          type="datetime-local"
+          [(ngModel)]="arrivalDateTime"
+          (change)="onArrivalTimeChange()"
+          class="form-control form-control-sm"
+          style="width: 200px;"
+        />
     </div>
+     <p class="m-0">
+          <strong>Arrival Time:</strong> {{ dateAndTime | date: 'HH:mm a, MMM dd' }}
+        </p>
+      <p class="mt-2">
+        <strong>Exit Before:</strong> {{ endTime | date: 'HH:mm a, MMM dd' }}
+      </p>
+  </div>
+
 
     <div class="max-duration text-center ">
       <i class="fas fa-info-circle"></i> 
@@ -56,7 +73,10 @@
 
 
   <div class="text-center mb-4">
-    <button class="btn-register w-100" (click)="verifyPlate()">Continue</button>
+
+    <button class="btn-register w-100"   [disabled]="parkingSlotsAvailable === 0" (click)="verifyPlate()">
+       {{ parkingSlotsAvailable === 0 ? 'No More Parking Space Available on this location' : 'Continue' }}
+    </button>
   </div>
 
   <app-qr-details *ngIf="vehicleVerified" [data]="summaryData"></app-qr-details>

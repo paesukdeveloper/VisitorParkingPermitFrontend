@@ -106,10 +106,13 @@ export class QrDetailsComponent {
 
     this.visitorService.qrPayment(encodeURIComponent(this.securityService.OpenSSLEncrypt(configuration.councilName)
   ), requestBody).subscribe((response)=> {
-    if(response.Status == 200){
+    if(response.Status == 200 && response.extraData ==null ){
         this.transactionIdForVisitorPermit = response.Data.transactionId;
 
         window.location.href = `${environment.startTransactionUrl + response.Data.transactionId}`;
+    }
+    else if(response.Status == 200 && response.extraData == "0"){
+        window.location.href = response.Data;
     }
     else if (response.Status === 400) {
       this.toaster.error(response.Message);

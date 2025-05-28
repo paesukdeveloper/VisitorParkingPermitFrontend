@@ -90,6 +90,7 @@ export class VisitorParkingService {
             Message: response.message,
             Status: response.status,
             AdditionalData:response.additionalData,
+            extraData : response.extraData ?? null,
             TotalCount: 0,
           } as ApiResponse)
         )
