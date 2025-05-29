@@ -1,6 +1,7 @@
 export const environment = {
     // production: true,
-    apiUrl: 'https://localhost:44345/api/',
+    // apiUrl: 'https://localhost:44345/api/',
+    apiUrl: 'http://77.68.54.108:3020/api/',
  
 
   // apiUrl: 'https://permitprodev.ftsdemo.co.uk:8092/api/', // dev
