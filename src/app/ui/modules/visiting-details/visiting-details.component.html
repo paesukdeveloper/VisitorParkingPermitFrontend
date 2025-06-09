@@ -1,9 +1,10 @@
-<div class="parking-details-container card-style p-4">
+<div class="parking-details-container card-style p-4 border-0">
     <div class="text-start mb-3">
       <a class="text-link" (click)="goBack()">← Go back</a>
     </div>
   
     <h4 class="text-center mb-2">{{locationAddress}}, {{locationId}}</h4>
+   
   
     <div class="d-flex justify-content-center flex-wrap mb-3">
             <button *ngFor="let hour of parkingDuration" class="duration-button" [ngClass]="{ 'selected': selectedDuration === hour }" (click)="selectDuration(hour)">
@@ -14,8 +15,8 @@
       <h5 class="mb-3">Overview</h5>
   
       <div class="row mb-3">
-        <div class="col">
-          <strong>Starts</strong><br />
+        <div class="col overview-text">          
+          <p>Starts</p>
           <span class="text-muted">{{ dateAndTime | date: 'HH:mm a,  MMM dd' }}</span>
         </div>
         <div class="col text-end">
@@ -25,17 +26,17 @@
       </div>
   
       <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <strong>Vehicle registration:</strong><br />
+        <div class="overview-text">
+          <p>Vehicle registration:</p>
           <span class="text-muted">{{vrm}}</span>
         </div>
-        <a class="text-link" (click)="goBack()">Edit</a>
+        <a class="text-link" (click)="goBack()"><span><i class="fa fa-pencil-square" aria-hidden="true"></i></span> Edit</a>
       </div>
     </div>
   
     <button class="add-button w-100 btn-confirm-booking" (click)="agreeAndProceed()">Confirm Booking</button>
   
-    <p >
+    <p class="terms-text">
       By clicking confirm, you are agreeing to the <a class="text-link"  (click)="RegisterVehicle()">Terms & Conditions</a>.
     </p>
   </div>

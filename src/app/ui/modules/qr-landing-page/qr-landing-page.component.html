@@ -1,24 +1,37 @@
 <div class="visitor-dashboard p-4">
   
-    <!-- <div class="main-page-logo align-content-center">
-      <img src="../../../../assets/images/PermitPro-Logo.svg" class="img-responsive main-page-logo" alt="logo">
-    </div> -->
  
-  <div class="card-style p-4 mb-3">
-    <h3 class="text-center mb-2 p-2">Registration</h3>
-    <div class="details-inline">
-      <div class="detail-block card-style">
+  <div class="card-style p-4 mb-3 border-0">
+    <h3 class="text-center mb-2 p-2 upper-font">Registration</h3>
+    <div class="details-inline mob-details-inline">
+      <div class="detail-block card-style id-box location-mobile-bx">
         <label><i class="fa-solid fa-location-dot icon-primary"></i> Location ID</label>
         <p>{{locationId}}</p>
       </div>
-      <div class="detail-block card-style">
-        <label><i class="fa-solid fa-map-pin icon-primary"></i> Parking At</label>
-        <p>{{locationAddress}}</p>
+      <div class="detail-block card-style id-box mobile-bx">
+        <label><i class="fa-solid fa-map-pin icon-primary"></i> 
+          Parking At 
+        <span
+          [ngStyle]="{
+            'background-color': parkingSlotsAvailable === 0 ? '#9E9E9E' : (parkingSlotsAvailable <= 5 ? '#F44336' : '#4CAF50'),
+            'color': 'white',
+            'padding': '4px 10px',
+            'border-radius': '16px',
+            'margin-left': '10px',
+            'font-weight': '600',
+            'font-size': '0.8rem'
+          }"
+        >
+          {{ parkingSlotsAvailable === 0 ? 'Fully Occupied' : (parkingSlotsAvailable === 1 ? 'Only 1 Spot Left!' : parkingSlotsAvailable + ' Spots Available') }}
+        </span>
+
+        </label>
+        <p>{{locationAddress}} </p>
       </div>
     </div>
 
-    <div class="vrm-highlight">
-      <h5>Vehicle Registration Number</h5>
+    <div class="vrm-highlight mob-vrm-highlight">
+      <h5><span class="mob-icon"><i class="fa-solid fa-car icon-primary"></i></span> Vehicle Registration Number</h5>
       <input class="form-control form-control-lg" type="text" [(ngModel)]="vrm" placeholder="Enter VRM" />
         <div *ngIf="showVrmError" class="errormsg mt-2">
           <span>Vehicle registration number is required.</span>
@@ -26,56 +39,49 @@
     </div>
   </div>
 
-  <div class="card-style p-4 mb-3">
+  <div class="card-style p-4 mb-3 border-0">
     <h5 class="form-label">Parking Duration</h5>
-   
+
     <div class="d-flex justify-content-center flex-wrap mb-3">
-    <button *ngFor="let option of parkingDuration"
-          class="duration-button"
-          [ngClass]="{ 'selected': selectedDuration?.id === option.id }"
-          (click)="selectDuration(option)">
-          {{ option.label }}
-    </button>
+      <button *ngFor="let option of parkingDuration" class="duration-button"
+        [ngClass]="{ 'selected': selectedDuration?.id === option.id }" (click)="selectDuration(option)">
+        {{ option.label }}
+      </button>
+    </div>    
+  
+    <div class="arrival-exit-time text-center mt-3">
+      <div class="d-flex justify-content-center align-items-center flex-wrap gap-2 mb-2">
+        <label for="arrivalTime" class="weight700"><i class="fa-regular fa-clock icon-primary"></i> Select Arrival Time</label>
+        <input id="arrivalTime" type="datetime-local" [(ngModel)]="arrivalDateTime" (change)="onArrivalTimeChange()"
+          class="form-control form-control-sm" style="width: 200px;" />
       </div>
-    
-   <div class="arrival-exit-time text-center mt-3">
-    <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
-       
-       <label for="arrivalTime"><i class="fa-regular fa-clock icon-primary"></i> Select Arrival Time</label>
-        <input
-          id="arrivalTime"
-          type="datetime-local"
-          [(ngModel)]="arrivalDateTime"
-          (change)="onArrivalTimeChange()"
-          class="form-control form-control-sm"
-          style="width: 200px;"
-        />
-    </div>
-     <p class="m-0">
-          <strong>Arrival Time:</strong> {{ dateAndTime | date: 'HH:mm a, MMM dd' }}
-        </p>
+      <p class="m-0">
+        <strong>Arrival Time:</strong> {{ dateAndTime | date: 'HH:mm a, MMM dd' }}
+      </p>
       <p class="mt-2">
         <strong>Exit Before:</strong> {{ endTime | date: 'HH:mm a, MMM dd' }}
       </p>
-  </div>
-
-
+    </div>
+  
+  
     <div class="max-duration text-center ">
-      <i class="fas fa-info-circle"></i> 
+      <i class="fas fa-info-circle"></i>
       <h6>Maximum Parking Duration: {{formattedMaxParkingDuration}}</h6>
     </div>
+
+
+   
   </div>
-
-
+  
+  
   <div class="total-amount text-center mb-4">
     <h5>Total Amount: € {{totalAmount}} </h5>
   </div>
-
-
+  
+  
   <div class="text-center mb-4">
-
-    <button class="btn-register w-100"   [disabled]="parkingSlotsAvailable === 0" (click)="verifyPlate()">
-       {{ parkingSlotsAvailable === 0 ? 'No More Parking Space Available on this location' : 'Continue' }}
+    <button class="btn-register w-100" [disabled]="parkingSlotsAvailable === 0" (click)="verifyPlate()">
+      {{ parkingSlotsAvailable === 0 ? 'No More Parking Space Available on this location' : 'Continue' }}
     </button>
   </div>
 

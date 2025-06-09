@@ -1,15 +1,15 @@
 <form [formGroup]="VisitorParkingForm">
-<div class="dashboard-container">
+<div class="dashboard-container p-4">
   <!-- Top Header -->
   <div class="dashboard-header">
-    <h2>Vehicle Registration</h2>
+    <h3 class="text-center mb-2 p-2 m0-auto upper-font">Vehicle Registration</h3>
   </div>
 
   <!-- Full-width Registration Panel -->
   <div class="registration-section">
-    <div class="vrm-highlight">
-      <label for="vrm">VRM Number</label>
-      <input id="vrm" formControlName="vrm" type="text" placeholder="Enter your vehicle registration" />
+    <div class="vrm-highlight mob-vrm-highlight mob-m-20">
+      <h5 for="vrm"><span class="mob-icon"><i class="fa-solid fa-car icon-primary"></i></span> VRM Number</h5>
+      <input id="vrm" formControlName="vrm" type="text" placeholder="Enter your vehicle registration" class="form-control mob-m-20" />
        <div *ngIf="VisitorParkingForm.get('vrm')?.invalid && (VisitorParkingForm.get('vrm')?.dirty || VisitorParkingForm.get('vrm')?.touched)"
           class="errormsg">
         <span>{{'VRM_is_required' | translate}} </span>
@@ -17,21 +17,21 @@
     </div>
 
     <div class="details-inline">
-      <div class="detail-block card-style">
+      <div class="detail-block card-style id-box location-mobile-bx">
         <label><i class="fa-solid fa-location-dot icon-primary"></i> Location ID</label>
         <p>{{locationId}}</p>
       </div>
-      <div class="detail-block card-style">
+      <div class="detail-block card-style id-box location-mobile-bx">
         <label><i class="fa-solid fa-map-pin icon-primary"></i> Location Address</label>
         <p>{{locationAddress}}</p>
       </div>
-      <div class="detail-block card-style">
-        <label>Date & Time</label>
+      <div class="detail-block card-style id-box location-mobile-bx">
+        <label><span class="mob-icon"><i class="fa fa-calendar icon-primary" aria-hidden="true"></i></span> Date & Time</label>
         <p>{{ dateAndTime | date: 'HH:mm a, EEE MMM dd' }}</p>
       </div>
     </div>
 
-    <div class="btn-container">
+    <div class="btn-container text-center m0-auto">
       <button class="btn-register" (click)="agreeAndProceed()">Register Vehicle</button>
     </div>
   </div>

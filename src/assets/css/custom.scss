@@ -291,6 +291,8 @@ a#sidebar-toggle {
 .div-flex-header {
   display: flex;
   flex: none;
+  justify-content: end;
+  padding-right: 0 !important;
 }
 
 .custom-bar .nav-link {
@@ -307,7 +309,8 @@ a#sidebar-toggle {
   -o-background-size: cover;
   background-size: cover;
   height: 100vh;
-  background-position: bottom;
+ // background-position: bottom;
+   background-position: center;
 }
 
 .login-logo img {
@@ -334,6 +337,7 @@ a#sidebar-toggle {
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 5px 1px rgba(64, 60, 67, .16);
+  opacity: 0.9;
 }
 
 .login-container h1,
@@ -345,6 +349,9 @@ a#sidebar-toggle {
 
 .login-container label {
   display: block;
+   font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 2px;
 }
 
 .login-container div,
@@ -377,6 +384,7 @@ input[type="password"] {
   color: var(--white);
   margin: 0 auto;
   text-align: center;
+   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .forgot-password {
@@ -400,6 +408,7 @@ input[type="password"] {
   background-color: var(--white) !important;
   color: var(--main-theme-color) !important;
   border: 1px solid var(--main-theme-color) !important;
+   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .line-design span img {
@@ -5130,7 +5139,7 @@ body:not(.is-collapsed) .inline-switch-main label {
 }
 
 .registration-section {
-  background-color: #f9f9f9;
+  background-color: #fefefe;
   padding: 2rem;
   border-radius: 10px;
 }
@@ -5195,14 +5204,15 @@ body:not(.is-collapsed) .inline-switch-main label {
 }
 
 .card-style label {
-  font-weight: bold;
-  font-size: 0.9rem;
+  //font-weight: bold;
+  font-size: 14px;
 }
 
 .card-style p {
-  font-size: 1rem;
+  font-size: 14px;
   margin-top: 0.3rem;
-  color: #444;
+  color: #212529;
+  margin-bottom: 0;
 }
 
 .btn-register {
@@ -5220,6 +5230,18 @@ body:not(.is-collapsed) .inline-switch-main label {
     background-color: #006b6f; // slightly darker for hover effect
   }
 }
+
+.btn-register:hover {
+  background-color: var(--body-bg);
+  color: var(--main-theme-color) !important;
+  text-decoration: none !important;
+  border: 1px solid var(--main-theme-color);
+  moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
 
 
 .icon-primary {
@@ -5253,9 +5275,16 @@ body:not(.is-collapsed) .inline-switch-main label {
 .app-footer {
   background-color: #f8f9fa;
   font-size: 0.9rem;
-  color: #555;
-  border-top: 1px solid #ddd;
+  //color: #555;
+  border-top: 1px solid #a0d2dd;
+    font-weight: 700 !important;
 }
+
+.app-footer span {
+  color: #000 !important;
+  font-weight: 700 !important;
+}
+
 
 
 // Visiting detilas for parking 
@@ -5354,7 +5383,8 @@ body:not(.is-collapsed) .inline-switch-main label {
 input.form-control {
   border-radius: 10px;
   padding: 0.5rem;
-  font-size: 1rem;
+ // font-size: 1rem;
+   font-size: 13px;
 }
 
 .section-card {
@@ -5412,6 +5442,11 @@ input, .form-control {
 }
 
 
+.max-duration h6 {
+  font-size: 14px;
+}
+
+
 /* Total Amount Styling */
 .total-amount {
   font-size: 1.5rem;
@@ -5426,4 +5461,211 @@ input, .form-control {
 
 .total-amount h5 {
   margin: 0;
+}
+
+
+// New CSS added
+
+h3 {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+}
+
+h5 {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+
+
+
+
+
+
+.login-logo h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.shadow-none {
+  box-shadow: none !important;
+}
+
+.id-box {
+    background: rgb(17 130 133 / 4%);
+    box-shadow: none !important;
+}
+
+.m0-auto {
+  margin: 0 auto;
+}
+
+.pad-0 {
+  padding: 0 !important;
+}
+
+a.dropdown-item.font-set {
+  text-transform: uppercase;
+  font-weight: 800 !important;
+    background-color: red;
+    width: fit-content;
+    padding: 10px 10px;
+    color: #fff;
+    font-size: 13px !important;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+a.dropdown-item.font-set:hover {
+    background-color: #008285;
+    color: #fff !important;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+a.dropdown-item.font-set.fa {
+  color: #fff;
+}
+
+.upper-font {
+  text-transform: uppercase;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px;
+}
+
+.terms-text {
+  text-align: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.visiting-location {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.overview-text p {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+
+.gredient-background {
+  background: linear-gradient(180deg,rgba(42, 123, 155, 0.2) 0%, rgba(0, 130, 133, 0.2) 0%, rgba(237, 252, 252, 0.2) 100%);
+  border-top: 2px solid #008285 !important;
+}
+
+.thank-t,.grn {
+  font-weight: 800;
+  font-size: 40px;
+  font-style: oblique;
+}
+
+.grn {
+  color: #008285;
+}
+
+.weight700 {
+  font-weight: 700;
+}
+
+.main-information-data {
+  list-style: none;
+  display: inline-block;
+}
+
+// responsive-css-start
+@media screen and (min-device-width: 320px) and (max-device-width: 350px) { 
+  .card-style {
+    min-width: unset !important;
+  }
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 450px) { 
+  .login-container {
+    width: 90%;
+  }
+  .login-logo h2 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-device-width: 768px) { 
+  .mob-icon {
+      display: none;
+    }
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 767px) {
+  .header-section {
+    width: 100% !important;
+    margin: 0px auto !important;
+    padding: 0px 0px !important;
+  }
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 1180px) { 
+  .parking-details-container {
+    margin-top: 10px;
+  }
+  .mob-m-20 {
+    margin-bottom: 20px;
+  }
+  .number-display .digit::before {
+    content: '[';
+  } 
+  .number-display .digit::after {
+    content: ']';
+  } 
+  .number-display .digit {
+    margin-right: 4px;
+  }
+  .mob-details-inline {
+    gap: 1em;
+    margin-bottom: 10px;
+  }
+  .mobile-bx,.location-mobile-bx {
+      background: transparent;
+      border: 0;
+      padding: 0;
+      border-bottom: 1px solid #ddd;
+      border-radius: 0;
+  }
+    .location-mobile-bx p {
+      font-size: 14px;
+        margin-bottom: 2px;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
+    .mobile-bx p {
+      margin-bottom: 2px;
+    }
+    .mob-vrm-highlight h5,.mob-vrm-highlight label {
+      font-size: 13px !important;
+        font-weight: bold !important;
+        margin-bottom: 5px;
+    }
+    .mob-vrm-highlight input.form-control {
+      border-radius: 10px;
+        padding: 10px 10px !important;
+        font-size: 22px;
+        font-weight: bold;
+        background-color: #eee;
+        height: 60px;
+        margin-bottom: 0;
+    }
+    .mob-icon {
+      font-size: 12px;
+      display: block;
+      float: left;
+      margin-right: 5px;
+      position: relative;
+      top: 2px;
+    }
+    .mob-vrm-highlight {
+      margin-top: 20px;
+    }
+    .location-mobile-bx label,.mobile-bx label {
+      font-size: 13px !important;
+    }    
 }

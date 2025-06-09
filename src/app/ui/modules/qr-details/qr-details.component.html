@@ -1,4 +1,4 @@
-<div class="parking-details-container card-style p-4">
+<div class="parking-details-container card-style p-4 border-0">
   
 
   <!-- <div class="d-flex justify-content-center mb-3">
@@ -16,18 +16,16 @@
   </div>
 </div> -->
 
-  
-    <h4 class="text-center mb-4">
-     Overview
-    </h4>
-    <h5 class="text-center mb-2">Parking At : {{locationAddress}}</h5>
+
+  <h3 class="text-center mb-2 p-2 upper-font">Overview</h3>
+    <h5 class="text-center mb-2 visiting-location">Parking At : {{locationAddress}}</h5>
   
    
     <div class="overview-card align-content-center card-style p-3 mb-4">
   
       <div class="row mb-3">
-        <div class="col">
-          <strong>Starts</strong><br />
+        <div class="col overview-text">
+          <p>Starts</p>
           <span class="text-muted">{{ dateAndTime | date: 'HH:mm a,  MMM dd' }}</span>
         </div>
         <div class="col text-end">
@@ -37,8 +35,8 @@
       </div>
   
       <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <strong>Registered Vehicle</strong><br />
+        <div class="overview-text">
+          <p>Registered Vehicle</p>
           <span class="text-muted">{{vrm}}</span>
         </div>
          <div class="col text-end">
@@ -49,7 +47,7 @@
     </div>
 
     <div class="mb-4">
-    <label for="email" class="form-label"><strong>Email Address</strong></label>
+    <label for="email" class="form-label">Email Address</label>
     <input
       type="email"
       id="email"
@@ -63,7 +61,7 @@
   
     <button class="add-button w-100 btn-confirm-booking" (click)="agreeAndProceed()">Pay € {{totalAmount}}</button>
   
-    <p >
+    <p class="terms-text">
       By paying the amount, you are agreeing to the <a class="text-link"  (click)="RegisterVehicle()">Terms & Conditions</a>.
     </p>
   </div>
