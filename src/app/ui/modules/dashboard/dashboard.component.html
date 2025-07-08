@@ -32,9 +32,40 @@
     </div>
 
     <div class="btn-container text-center m0-auto">
-      <button class="btn-register" (click)="agreeAndProceed()">Register Vehicle</button>
+      <button class="btn-register" (click)="VerifyVehicle()">Register Vehicle</button>
+      <!-- <button class="btn-register" (click)="agreeAndProceed()">Register Vehicle</button> -->
     </div>
   </div>
 </div>
 
 </form>
+
+
+
+<div class="modal cust-modal" tabindex="-1" role="dialog" [ngStyle]="{'display': displayStyle}">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Vehicle VRM - {{optimaVRM}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeVechConfirmPopUp()" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body with Vehicle Image -->
+      <div class="modal-body text-center">
+        <img [src]="OptimaVehicleImageUrl" alt="Vehicle Image" class="img-fluid rounded shadow-sm mb-4" style="max-height: 400px; object-fit: cover;" />
+      <br>
+        <h6>Vehicle Entered on {{optimaVecEnteredDate}} at {{optimaVecEnteredTime}}</h6>
+      </div>
+
+      <!-- Modal Footer with Action Buttons -->
+      <div class="modal-footer d-flex justify-content-center flex-column align-items-center">
+        <button type="button" class="btn-register w-75 mb-2" (click)="agreeAndProceed()">Confirm this is my vehicle</button>
+        <button type="button" class="btn btn-outline-danger w-75" (click)="closeVechConfirmPopUp()">This is not my vehicle</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

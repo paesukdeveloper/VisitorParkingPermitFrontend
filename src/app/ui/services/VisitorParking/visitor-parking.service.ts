@@ -98,6 +98,62 @@ export class VisitorParkingService {
   }
 
 
+   GetLaneTypeDropdownDetails(): Observable<ApiResponse> {
+    this.loader.show()
+       return this.httpclient
+         .get<any>(
+           `${environment.apiUrl}` +
+           apiUrlSetting.ApiMethods.Optima
+             .GetLastDetailsViaOptima, {
+           params: {
+             CouncilId: '1'
+           }
+         }
+         )
+         .pipe(
+           retry(0),
+           catchError(this.handleError),
+           map(
+             (response) =>
+             (this.loader.hide(),{
+               Data: response.data,
+               Message: response.message,
+               Status: response.status,
+               TotalCount: 0,
+             } as ApiResponse)
+           )
+         );
+     }
+
+
+    savePaymentVisitorParkingPermit(CouncilId: any, requestBody: any): Observable<ApiResponse> {
+    this.loader.show();
+    return this.httpclient
+      .post<any>(
+        `${environment.apiUrl}` +
+        apiUrlSetting.ApiMethods.Visitor.saveVrmPayment, requestBody, {
+        params: {
+          CouncilId: CouncilId
+        }
+      }
+      )
+      .pipe(
+        retry(0),
+        catchError(this.handleError),
+        map(
+          (response) =>
+          (this.loader.hide(), {
+            Data: response.data,
+            Message: response.message,
+            Status: response.status,
+            AdditionalData:response.additionalData,
+            TotalCount: 0,
+          } as ApiResponse)
+        )
+      );
+  }
+
+
 
    private handleError(error: any) {
     let errorMessage = '';

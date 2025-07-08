@@ -167,8 +167,14 @@ export const apiUrlSetting = {
           Visitor: {
             saveVisitorVrm : "Visitor/SaveVrmRegistration",
             GetVisitorVoucherByLocationId : "Visitor/GetVisitorVoucherByLocationId",
-            transactionInitVisitorVoucher : "Visitor/TransactionInitVisitorVoucher"
+            transactionInitVisitorVoucher : "Visitor/TransactionInitVisitorVoucher",
+            saveVrmPayment: "Visitor/SaveVrmRegistration"
+
+          },
+          Optima: {
+            GetLastDetailsViaOptima : "Optima/optimaapi"
           }
+
          
     }
 }

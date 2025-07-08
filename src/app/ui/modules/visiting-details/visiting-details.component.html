@@ -2,14 +2,19 @@
     <div class="text-start mb-3">
       <a class="text-link" (click)="goBack()">← Go back</a>
     </div>
+     <h4 class="text-center mb-2">Location ID :  {{locationId}}</h4>
   
-    <h4 class="text-center mb-2">{{locationAddress}}, {{locationId}}</h4>
+    <h4 class="text-center mb-2">Parking At : {{locationAddress}}</h4>
    
   
     <div class="d-flex justify-content-center flex-wrap mb-3">
-            <button *ngFor="let hour of parkingDuration" class="duration-button" [ngClass]="{ 'selected': selectedDuration === hour }" (click)="selectDuration(hour)">
+       <button *ngFor="let option of parkingDuration" class="duration-button"
+        [ngClass]="{ 'selected': selectedDuration?.id === option.id }" (click)="selectDuration(option)">
+        {{ option.label }}
+      </button>
+            <!-- <button *ngFor="let hour of parkingDuration" class="duration-button" [ngClass]="{ 'selected': selectedDuration === hour }" (click)="selectDuration(hour)">
               {{ hour }} hr
-            </button>
+            </button> -->
       </div>
     <div class="overview-card card-style p-3 mb-4">
       <h5 class="mb-3">Overview</h5>
@@ -34,7 +39,9 @@
       </div>
     </div>
   
-    <button class="add-button w-100 btn-confirm-booking" (click)="agreeAndProceed()">Confirm Booking</button>
+    <button class="add-button w-100 btn-confirm-booking" (click)="agreeAndProceed()">
+     {{ IsCameraSetup ? ('Pay ' + totalAmount) : 'Continue' }}
+    </button>
   
     <p class="terms-text">
       By clicking confirm, you are agreeing to the <a class="text-link"  (click)="RegisterVehicle()">Terms & Conditions</a>.

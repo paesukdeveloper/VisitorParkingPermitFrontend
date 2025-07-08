@@ -5668,4 +5668,15 @@ a.dropdown-item.font-set.fa {
     .location-mobile-bx label,.mobile-bx label {
       font-size: 13px !important;
     }    
+
+
+    .modal-body img {
+  width: 100%;
+  max-width: 600px;
+}
+
+.modal-footer button {
+  max-width: 300px;
+}
+
 }

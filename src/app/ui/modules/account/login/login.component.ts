@@ -38,6 +38,7 @@ export class LoginComponent {
     locationId: string ="";
     locationAddress: string ="";
     parkingDuration: string[] = [];
+    isCameraSetup: boolean = false
 
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
@@ -131,6 +132,7 @@ loginClick() {
           this.locationId  =  response.data.user.locationId;
           this.locationAddress = response.data.user.address;
           this.parkingDuration = response.data.user.parkingDuration;
+          this.isCameraSetup =  response.data.user.isCameraSetup;
           this.TransferLoginData()
         }
         else {
@@ -241,6 +243,7 @@ checkPassExpiry(UserEmail: string){
       locationId : this.locationId,
       locationAddress : this.locationAddress,
       parkingDuration : this.parkingDuration,
+      isCameraSetup: this.isCameraSetup
     }
   )
   }
