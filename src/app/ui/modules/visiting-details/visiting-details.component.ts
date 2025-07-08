@@ -163,7 +163,7 @@ export class VisitingDetailsComponent {
             window.location.href = `${environment.startTransactionUrl + response.Data.transactionId}`;
         }
         else if(response.Status == 200){
-            window.location.href = response.AdditionalData;
+            window.location.href = response.Data;
         }
         else if (response.Status === 400) {
           this.toaster.error(response.Message);
