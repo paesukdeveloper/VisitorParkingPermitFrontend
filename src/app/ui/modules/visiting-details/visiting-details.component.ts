@@ -124,7 +124,6 @@ export class VisitingDetailsComponent {
         refno: "",
         amount: this.totalAmount,
         autoSettle: true,
-        paymentMethods: [""],
         redirect: {
           successUrl: "",
           cancelUrl: "",
